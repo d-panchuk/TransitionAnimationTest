@@ -50,7 +50,7 @@ extension ViewTransitioningAnimationController: UIViewControllerAnimatedTransiti
         let snapshot = sourceView.snapshotView(afterScreenUpdates: false)!
         snapshot.frame = container.convert(sourceView.frame, from: sourceView.superview)
         container.addSubview(snapshot)
-
+        
         // - initial animation setup -
         
         // hide transitioningView source & destination
@@ -76,8 +76,9 @@ extension ViewTransitioningAnimationController: UIViewControllerAnimatedTransiti
                 fromVC.view.alpha = 1
                 sourceView.isHidden = false
                 destinationView.isHidden = false
-
+                
                 snapshot.removeFromSuperview()
+                toVC.view.transform = CGAffineTransform.identity
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
